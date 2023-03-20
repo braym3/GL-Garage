@@ -1,6 +1,6 @@
 package com.qa.garage;
 
-public class Employee {
+public class Employee implements Billable {
 
 	private String name;
 	private int age;
@@ -15,6 +15,11 @@ public class Employee {
 
 	public Employee() {
 		super();
+	}
+
+	@Override
+	public int calcBill() {
+		return 10;
 	}
 
 	public String getName() {

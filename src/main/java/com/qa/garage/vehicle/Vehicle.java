@@ -1,6 +1,8 @@
 package com.qa.garage.vehicle;
 
-public abstract class Vehicle {
+import com.qa.garage.Billable;
+
+public abstract class Vehicle implements Billable {
 
 	private int numWheels;
 
@@ -18,7 +20,8 @@ public abstract class Vehicle {
 		idCount++;
 	}
 
-	public abstract int calcBill();
+	@Override
+	public abstract int calcBill();;
 
 	public int getId() {
 		return this.id;
