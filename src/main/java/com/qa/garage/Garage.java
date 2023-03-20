@@ -21,6 +21,14 @@ public class Garage {
 		return this.vehicles.size() == 0;
 	}
 
+	public String listIDs() {
+		String s = "";
+		for (Vehicle v : vehicles) {
+			s += v.getColour() + " " + v.getClass().getSimpleName() + " id: " + v.getId() + "\n";
+		}
+		return s;
+	}
+
 	public int calcBillInstance() {
 		int bill = 0;
 		for (Vehicle v : this.vehicles) {

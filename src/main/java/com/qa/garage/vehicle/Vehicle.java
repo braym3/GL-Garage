@@ -6,22 +6,22 @@ public abstract class Vehicle {
 
 	private String colour;
 
-	private int id;
+	private final int id;
+
+	public static int idCount;
 
 	public Vehicle(int numWheels, String colour) {
 		super();
 		this.numWheels = numWheels;
 		this.colour = colour;
+		this.id = idCount;
+		idCount++;
 	}
 
 	public abstract int calcBill();
 
 	public int getId() {
 		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getNumWheels() {

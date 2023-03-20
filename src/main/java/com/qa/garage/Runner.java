@@ -16,9 +16,13 @@ public class Runner {
 
 		System.out.println(g);
 
+		System.out.println(g.listIDs());
+
 //		g.removeByType("car");
 		g.remove(Car.class);
 		System.out.println(g);
+		System.out.println(g.listIDs());
+		;
 	}
 
 }
