@@ -46,20 +46,31 @@ public class Runner {
 		// Try calling find by ID
 		// close scanner in a try-with-resources
 		try (Scanner scan = new Scanner(System.in);) {
-			boolean correctID = false;
+			String input = "";
+			int id = -1;
+			// continuously ask for an ID until user inputs "quit"
 			do {
 				try {
 					// Use scanner to get user input ID
-					System.out.println("Enter ID: ");
-					int id = scan.nextInt();
+					System.out.println("\nEnter ID or 'quit': ");
+					input = scan.nextLine();
 
-					// Print the type of vehicle found from ID
-					System.out.println(g.findByID(id).getClass().getSimpleName());
-					correctID = true;
+					if (!input.equals("quit")) {
+						// try to convert input string to int
+						try {
+							id = Integer.parseInt(input);
+						} catch (Exception e) {
+							System.out.println("Input is not a number");
+						}
+
+						// Print the type of vehicle found from ID
+						System.out.println(g.findByID(id).getClass().getSimpleName());
+					}
+
 				} catch (VehicleNotFoundException vnfe) {
 					System.out.println("Vehicle ID not found, try again\n");
 				}
-			} while (!correctID);
+			} while (!input.equals("quit"));
 
 		}
 	}
