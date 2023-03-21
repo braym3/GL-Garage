@@ -24,7 +24,7 @@ public class Runner {
 
 //		g.removeByType("car");
 		g.remove(Car.class);
-		System.out.println(g);
+		System.out.println("Removed Cars:");
 		System.out.println(g.listIDs());
 		;
 
@@ -44,15 +44,23 @@ public class Runner {
 		System.out.println();
 
 		// Try calling find by ID
+		// close scanner in a try-with-resources
 		try (Scanner scan = new Scanner(System.in);) {
-			// Use scanner to get user input ID
-			System.out.println("Enter ID: ");
-			int id = scan.nextInt();
+			boolean correctID = false;
+			do {
+				try {
+					// Use scanner to get user input ID
+					System.out.println("Enter ID: ");
+					int id = scan.nextInt();
 
-			// Print the type of vehicle found from ID
-			System.out.println(g.findByID(id).getClass().getSimpleName());
-		} catch (VehicleNotFoundException vnfe) {
-			System.out.println("Vehicle ID not found, try again");
+					// Print the type of vehicle found from ID
+					System.out.println(g.findByID(id).getClass().getSimpleName());
+					correctID = true;
+				} catch (VehicleNotFoundException vnfe) {
+					System.out.println("Vehicle ID not found, try again\n");
+				}
+			} while (!correctID);
+
 		}
 	}
 
