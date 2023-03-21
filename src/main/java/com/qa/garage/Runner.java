@@ -2,6 +2,7 @@ package com.qa.garage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.qa.garage.vehicle.Bike;
 import com.qa.garage.vehicle.Boat;
@@ -9,7 +10,7 @@ import com.qa.garage.vehicle.Car;
 
 public class Runner {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws VehicleNotFoundException {
 		Garage g = new Garage();
 
 		g.addVehicle(new Car(4, "Black"));
@@ -39,6 +40,19 @@ public class Runner {
 		for (Billable b : billObjects) {
 			System.out.println(b.getClass().getSimpleName() + " bill = " + b.calcBill());
 			// System.out.println(b.toString());
+		}
+		System.out.println();
+
+		// Try calling find by ID
+		try (Scanner scan = new Scanner(System.in);) {
+			// Use scanner to get user input ID
+			System.out.println("Enter ID: ");
+			int id = scan.nextInt();
+
+			// Print the type of vehicle found from ID
+			System.out.println(g.findByID(id).getClass().getSimpleName());
+		} catch (VehicleNotFoundException vnfe) {
+			System.out.println("Vehicle ID not found, try again");
 		}
 	}
 

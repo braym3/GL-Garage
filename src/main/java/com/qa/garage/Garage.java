@@ -12,6 +12,16 @@ public class Garage {
 
 	private List<Vehicle> vehicles = new ArrayList<>();
 
+	public Vehicle findByID(int id) throws VehicleNotFoundException {
+
+		for (Vehicle v : vehicles) {
+			if (v.getId() == id) {
+				return v;
+			}
+		}
+		throw new VehicleNotFoundException("No vehicle found with ID " + id);
+	}
+
 	public boolean addVehicle(Vehicle v) {
 		return this.vehicles.add(v);
 	}
